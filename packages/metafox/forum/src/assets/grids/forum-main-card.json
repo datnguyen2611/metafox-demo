@@ -1,0 +1,20 @@
+{
+  "gridContainerProps": {
+    "spacing": 0,
+    "columnSpacing": 0,
+    "rowSpacing": 0
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "sm": 6,
+    "md": 6,
+    "lg": 6,
+    "xl": 6,
+    "sx": {}
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Forum - Main Card"
+  }
+}

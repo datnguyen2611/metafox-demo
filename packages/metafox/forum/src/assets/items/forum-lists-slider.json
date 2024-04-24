@@ -1,0 +1,17 @@
+{
+  "itemProps": {
+    "title": {
+      "variant": "h3",
+      "component": "h3",
+      "lines": 1,
+      "color": "textHint",
+      "sx": {
+        "fontWeight": 700
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Forum Lists - Slider"
+  }
+}

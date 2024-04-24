@@ -1,0 +1,172 @@
+import {
+  BlockViewProps,
+  useGlobal,
+  useResourceAction,
+  useResourceForm
+} from '@metafox/framework';
+import { styled, Box, Typography, Grid } from '@mui/material';
+import { Block, BlockContent, BlockHeader } from '@metafox/layout';
+import React from 'react';
+import { FormBuilder } from '@metafox/form';
+import { whenParamRules } from '@metafox/utils';
+import qs from 'querystring';
+import { APP_NAME, RESOURCE_SPONSOR } from '@metafox/advertise/constants';
+
+export type Props = BlockViewProps;
+
+const gridTitle = [
+  {
+    label: 'title',
+    grid: 3
+  },
+  {
+    label: 'start_date',
+    grid: 2
+  },
+  {
+    label: 'status',
+    grid: 1.5,
+    center: true
+  },
+  {
+    label: 'views',
+    grid: 1.5,
+    center: true
+  },
+  {
+    label: 'clicks',
+    grid: 1.5,
+    center: true
+  },
+  {
+    label: 'active',
+    grid: 2,
+    center: true
+  },
+  {
+    label: null,
+    grid: 0.5,
+    center: true
+  }
+];
+
+const TitleStyled = styled(Grid, { name: 'TitleStyled' })(({ theme }) => ({
+  display: 'flex',
+  padding: theme.spacing(3, 2, 2)
+}));
+
+const ContentWrapper = styled(Box, {
+  name: 'ContentWrapper'
+})(({ theme }) => ({
+  padding: theme.spacing(3, 2, 2),
+  [theme.breakpoints.down('md')]: {
+    padding: theme.spacing(0)
+  }
+}));
+
+const GridWrapper = styled(Box, {
+  name: 'GridWrapper'
+})(({ theme }) => ({
+  [theme.breakpoints.up('md')]: {
+    position: 'relative',
+    overflowX: 'auto',
+    width: '100%'
+  }
+}));
+
+const GridContent = styled(Box, {
+  name: 'GridContent'
+})(({ theme }) => ({
+  [theme.breakpoints.up('md')]: {
+    minWidth: '1180px'
+  }
+}));
+
+export default function Base({ title, ...rest }: Props) {
+  const { usePageParams, navigate, jsxBackend, i18n, useIsMobile } =
+    useGlobal();
+  const pageParams = usePageParams();
+  const isMobile = useIsMobile();
+
+  const dataSource = useResourceAction(APP_NAME, RESOURCE_SPONSOR, 'viewAll');
+
+  const formSchema = useResourceForm(APP_NAME, RESOURCE_SPONSOR, 'search_form');
+
+  const ListView = jsxBackend.get('core.block.mainListing');
+
+  const submitFilter = (values, form) => {
+    const apiRules = dataSource.apiRules;
+
+    const params = whenParamRules(values, apiRules);
+
+    navigate(`?${qs.stringify(params)}`, { replace: true });
+    form.setSubmitting(false);
+  };
+
+  if (isMobile) {
+    return (
+      <Block testid="advertiseBlock" {...rest}>
+        <BlockHeader title={title}></BlockHeader>
+        <BlockContent {...rest}>
+          <ContentWrapper>
+            <FormBuilder
+              navigationConfirmWhenDirty={false}
+              formSchema={formSchema}
+              onSubmit={submitFilter}
+            />
+            {React.createElement(ListView, {
+              itemView: 'advertise.itemView.sponsorshipRecord',
+              dataSource,
+              emptyPage: 'advertise.itemView.no_content_record',
+              pageParams,
+              blockLayout: 'Large Main Lists',
+              gridContainerProps: { spacing: 0 }
+            })}
+          </ContentWrapper>
+        </BlockContent>
+      </Block>
+    );
+  }
+
+  return (
+    <Block testid="advertiseBlock" {...rest}>
+      <BlockHeader title={title}></BlockHeader>
+      <BlockContent {...rest}>
+        <ContentWrapper>
+          <FormBuilder
+            navigationConfirmWhenDirty={false}
+            formSchema={formSchema}
+            onSubmit={submitFilter}
+          />
+          <GridWrapper>
+            <GridContent>
+              <TitleStyled container>
+                {gridTitle.map((title, index) => (
+                  <Grid item key={index} xs={title.grid}>
+                    <Typography
+                      variant="h5"
+                      sx={title.center && { textAlign: 'center' }}
+                    >
+                      {title.label && i18n.formatMessage({ id: title.label })}
+                    </Typography>
+                  </Grid>
+                ))}
+              </TitleStyled>
+              {React.createElement(ListView, {
+                itemView: 'advertise.itemView.sponsorshipRecord',
+                dataSource,
+                emptyPage: 'advertise.itemView.no_content_record',
+                pageParams,
+                blockLayout: 'App List - Record Table',
+                itemLayout: 'Record Item - Table',
+                gridLayout: 'Record Item - Table'
+              })}
+            </GridContent>
+          </GridWrapper>
+        </ContentWrapper>
+      </BlockContent>
+    </Block>
+  );
+}
+
+Base.displayName = 'Advertise';

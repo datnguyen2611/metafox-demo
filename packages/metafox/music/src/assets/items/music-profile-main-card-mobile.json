@@ -1,0 +1,46 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "media": {
+      "aspectRatio": "169",
+      "width": "100%",
+      "placement": "top"
+    },
+    "content": {
+      "sx": {
+        "pt": 0,
+        "pb": 2,
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "height": "100%",
+        "borderColor": "border.secondary",
+        "borderStyle": "solid",
+        "borderLeftWidth": 1,
+        "borderRightWidth": 1,
+        "borderTopWidth": 1,
+        "borderBottomWidth": 1
+      },
+      "dividerVariant": "bottom"
+    },
+    "text": {
+      "sx": {
+        "pl": 2,
+        "pr": 2
+      }
+    },
+    "showActionMenu": 1,
+    "title": {
+      "variant": "h4",
+      "lines": 2,
+      "fixHeight": 1,
+      "sx": {
+        "mb": 2.875,
+        "mr": 2.875
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Music - Profile - Main Card - Mobile"
+  }
+}

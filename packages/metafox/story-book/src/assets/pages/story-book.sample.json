@@ -1,0 +1,59 @@
+{
+  "large": {
+    "templateName": "three-column-fixed",
+    "blocks": [
+      {
+        "component": "story-book.block.SampleBlock",
+        "slotName": "main",
+        "key": "a7tie",
+        "blockId": "a7tie",
+        "title": "Buttons",
+        "blockProps": {
+          "variant": "Admin Form",
+          "titleComponent": "h2",
+          "titleVariant": "secondary",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "mb": 2,
+            "bgColor": "paper"
+          },
+          "contentStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pr": 2,
+            "pb": 2,
+            "ml": 2,
+            "mt": 2,
+            "mr": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 3,
+            "pr": 2,
+            "pb": 1,
+            "dividerVariant": "0"
+          },
+          "footerStyle": {}
+        },
+        "freeze": 0
+      }
+    ]
+  },
+  "small": {
+    "templateName": "blank",
+    "blocks": [
+      {
+        "component": "user.block.userLoginContent",
+        "slotName": "main"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "story-book.sample"
+  }
+}

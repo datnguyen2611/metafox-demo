@@ -1,0 +1,17 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "sx": {
+        "mt": 1,
+        "mb": 0,
+        "borderRadius": 0
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Advertise - All Placement (Top spacing)"
+  }
+}

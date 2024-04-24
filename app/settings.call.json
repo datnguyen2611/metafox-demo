@@ -1,0 +1,22 @@
+{
+  "siteUrl": "/",
+  "build": {
+    "successUrl": "",
+    "failureUrl": ""
+  },
+  "cookie": {
+    "attributes": []
+  },
+  "localStore": {
+    "prefix": "mfox"
+  },
+  "i18n": {
+    "locale": "en",
+    "supports": ["en"]
+  },
+  "packages": {
+    "@metafox/core": "local",
+    "@metafox/chat-ui": "local",
+    "@metafox/chatplus": "local"
+  }
+}
